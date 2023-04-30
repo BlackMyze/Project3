@@ -13,14 +13,16 @@ def Enrutamiento(lista, Nodo):
     ("241.12.31.14","241.12.31.18")
     ("241.12.31.14","241.12.31.19")
     """
+
     for node in G.nodes():
 
-      if node == Nodo: pass
-      elif node in [*G.neighbors(Nodo)]: print((Nodo, node))
+      if (node == Nodo): pass
+      elif (node in [*G.neighbors(Nodo)]): print((Nodo, node), '--> Enrutamiento')
 
       else:
-        print(node)
-        thread = threading.Thread(name= node, target = RS, args=([Nodo], G))
+        thread = threading.Thread(name= node, target = RS, args=([Nodo, *G.neighbors(Nodo)], [*G.neighbors(Nodo)], node))
         thread.start()
+        thread.join()
+
 
 Enrutamiento(Conexiones, "241.12.31.14")
