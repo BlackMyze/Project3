@@ -9,20 +9,23 @@ def Enrutamiento(lista, Nodo):
     >>> Enrutamiento(Conexiones, "241.12.31.14")
     ("241.12.31.14","241.12.31.15")
     ("241.12.31.14","241.12.31.15","241.12.31.16")
-    ("241.12.31.14",241.12.31.18", "241.12.31.17")
+    ("241.12.31.14",241.12.31.18","241.12.31.17")
     ("241.12.31.14","241.12.31.18")
     ("241.12.31.14","241.12.31.19")
     """
 
     for node in G.nodes():
 
-      if (node == Nodo): pass
-      elif (node in [*G.neighbors(Nodo)]): print((Nodo, node), '--> Enrutamiento')
+        if (node == Nodo): pass
+        else:
+            thread = threading.Thread(name = node, target = RS, args = (Nodo, node))
+            thread.start()
+            thread.join()
+        
 
-      else:
-        thread = threading.Thread(name= node, target = RS, args=([Nodo, *G.neighbors(Nodo)], [*G.neighbors(Nodo)], node))
-        thread.start()
-        thread.join()
+Enrutamiento(Conexiones, "241.12.31.1")
 
 
-Enrutamiento(Conexiones, "241.12.31.14")
+
+# import doctest
+# doctest.testmod()
