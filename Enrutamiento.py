@@ -18,12 +18,13 @@ def Enrutamiento(lista, Nodo):
 
         if (node == Nodo): pass
         else:
-            thread = threading.Thread(name = node, target = RS, args = (Nodo, node))
-            thread.start()
-            thread.join()
+            #thread = threading.Thread(name = node, target = RS, args = (Nodo, node))
+            #thread.run()
+            #thread.join()
+            print(RS(Nodo, node, set()))
         
 
-Enrutamiento(Conexiones, "241.12.31.1")
+Enrutamiento(Conexiones, "241.12.31.14")
 
 
 
